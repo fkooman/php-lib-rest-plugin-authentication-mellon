@@ -1,0 +1,21 @@
+{
+    "authors": [
+        {
+            "email": "fkooman@tuxed.net",
+            "name": "Fran\u00e7ois Kooman",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "fkooman\\Rest\\Plugin\\Mellon": "src/"
+        }
+    },
+    "description": "Mellon (SAML) Authentication plugin for fkooman/rest",
+    "license": "Apache-2.0",
+    "name": "fkooman/rest-plugin-mellon",
+    "require": {
+        "fkooman/rest": "~0.6.0",
+        "php": ">=5.3.3"
+    }
+}
