@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/fkooman/php-lib-rest-plugin-mellon.svg?branch=master)](https://travis-ci.org/fkooman/php-lib-rest-plugin-mellon)
+
 # Introduction
 
 This plugin enables one to use SAML authentication with `fkooman/rest`. 
