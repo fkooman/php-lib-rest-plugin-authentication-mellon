@@ -15,7 +15,7 @@
     "license": "Apache-2.0",
     "name": "fkooman/rest-plugin-mellon",
     "require": {
-        "fkooman/rest": "~0.6.0",
+        "fkooman/rest": "~0.6.1",
         "php": ">=5.3.3"
     }
 }
