@@ -21,6 +21,7 @@ namespace fkooman\Rest\Plugin\Mellon;
 use fkooman\Http\Request;
 use fkooman\Rest\ServicePluginInterface;
 use fkooman\Http\Exception\InternalServerErrorException;
+use fkooman\Rest\Plugin\UserInfo;
 
 class MellonAuthentication implements ServicePluginInterface
 {
@@ -39,6 +40,6 @@ class MellonAuthentication implements ServicePluginInterface
             throw new InternalServerErrorException("mellon configuration error, expected attribute not available");
         }
 
-        return new MellonUserInfo($mellonUserId);
+        return new UserInfo($mellonUserId);
     }
 }

@@ -22,6 +22,7 @@ use fkooman\Http\Exception\HttpException;
 use fkooman\Http\Exception\InternalServerErrorException;
 use fkooman\Rest\Service;
 use fkooman\Rest\Plugin\Mellon\MellonAuthentication;
+use fkooman\Rest\Plugin\UserInfo;
 
 try {
     $service = new Service();
@@ -32,7 +33,7 @@ try {
 
     $service->get(
         '/getMyUserId',
-        function (BasicUserInfo $u) {
+        function (UserInfo $u) {
             return sprintf('Hello %s', $u->getUserId());
         }
     );
