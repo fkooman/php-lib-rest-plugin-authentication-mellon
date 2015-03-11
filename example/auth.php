@@ -27,7 +27,7 @@ use fkooman\Rest\Plugin\UserInfo;
 try {
     $service = new Service();
 
-    $service->registerBeforeEachMatchPlugin(
+    $service->registerOnMatchPlugin(
         new MellonAuthentication('MELLON_NAME_ID')
     );
 
@@ -40,12 +40,5 @@ try {
 
     $service->run()->sendResponse();
 } catch (Exception $e) {
-    if ($e instanceof HttpException) {
-        $response = $e->getHtmlResponse();
-    } else {
-        // we catch all other (unexpected) exceptions and return a 500
-        $e = new InternalServerErrorException($e->getMessage());
-        $response = $e->getHtmlResponse();
-    }
-    $response->sendResponse();
+    Service::handleException($e)->sendResponse();
 }

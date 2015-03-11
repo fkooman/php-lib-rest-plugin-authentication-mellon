@@ -27,7 +27,7 @@ class MellonAuthenticationTest extends PHPUnit_Framework_TestCase
     public function testMellonAuthCorrect()
     {
         $request = new Request('http://www.example.org/foo', "GET");
-        $request->setHeader('MELLON_NAME_ID', 'foo');
+        $request->setHeaders(array('MELLON_NAME_ID' => 'foo'));
 
         $basicAuth = new MellonAuthentication('MELLON_NAME_ID');
         $userInfo = $basicAuth->execute($request);

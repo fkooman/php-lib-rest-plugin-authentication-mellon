@@ -1,5 +1,8 @@
 # Release History
 
+## 0.3.0
+- update to latest `fkooman/rest`
+
 ## 0.2.0
 - use `fkooman/rest` generic `UserInfo` class for user information
 
