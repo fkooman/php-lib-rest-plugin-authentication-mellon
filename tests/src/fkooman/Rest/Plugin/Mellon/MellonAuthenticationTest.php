@@ -30,7 +30,7 @@ class MellonAuthenticationTest extends PHPUnit_Framework_TestCase
         $request->setHeaders(array('MELLON_NAME_ID' => 'foo'));
 
         $basicAuth = new MellonAuthentication('MELLON_NAME_ID');
-        $userInfo = $basicAuth->execute($request);
+        $userInfo = $basicAuth->execute($request, array());
         $this->assertEquals('foo', $userInfo->getUserId());
     }
 
@@ -43,6 +43,6 @@ class MellonAuthenticationTest extends PHPUnit_Framework_TestCase
         $request = new Request('http://www.example.org/foo', "GET");
 
         $basicAuth = new MellonAuthentication('MELLON_NAME_ID');
-        $basicAuth->execute($request);
+        $basicAuth->execute($request, array());
     }
 }

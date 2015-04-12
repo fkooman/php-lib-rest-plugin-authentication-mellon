@@ -33,7 +33,7 @@ class MellonAuthentication implements ServicePluginInterface
         $this->userIdAttribute = $userIdAttribute;
     }
 
-    public function execute(Request $request)
+    public function execute(Request $request, array $routeConfig)
     {
         $mellonUserId = $request->getHeader($this->userIdAttribute);
         if (null === $mellonUserId || !is_string($mellonUserId)) {
