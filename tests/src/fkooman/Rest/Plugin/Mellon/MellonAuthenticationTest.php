@@ -36,7 +36,7 @@ class MellonAuthenticationTest extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException fkooman\Http\Exception\InternalServerErrorException
-     * @expectedExceptionMessage mellon configuration error, expected attribute not available
+     * @expectedExceptionMessage mellon configuration error, expected attribute "MELLON_NAME_ID" not available
      */
     public function testMissingNameId()
     {

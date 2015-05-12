@@ -37,7 +37,12 @@ class MellonAuthentication implements ServicePluginInterface
     {
         $mellonUserId = $request->getHeader($this->userIdAttribute);
         if (null === $mellonUserId || !is_string($mellonUserId)) {
-            throw new InternalServerErrorException("mellon configuration error, expected attribute not available");
+            throw new InternalServerErrorException(
+                sprintf(
+                    'mellon configuration error, expected attribute "%s" not available',
+                    $this->userIdAttribute
+                )
+            );
         }
 
         return new UserInfo($mellonUserId);
