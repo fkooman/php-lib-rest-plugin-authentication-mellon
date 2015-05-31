@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3b0421bb925ead3014655399603c5dae",
+    "hash": "7ec21622059ae62a9f38efa76f1c495f",
     "packages": [
         {
             "name": "fkooman/json",
@@ -45,21 +45,24 @@
         },
         {
             "name": "fkooman/rest",
-            "version": "0.8.0",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fkooman/php-lib-rest.git",
-                "reference": "8cd11d4863f057883ac7009dc8024e609ba13ef6"
+                "reference": "6b53cec8b23f7561a6bbd8646fea3449bcc1d964"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fkooman/php-lib-rest/zipball/8cd11d4863f057883ac7009dc8024e609ba13ef6",
-                "reference": "8cd11d4863f057883ac7009dc8024e609ba13ef6",
+                "url": "https://api.github.com/repos/fkooman/php-lib-rest/zipball/6b53cec8b23f7561a6bbd8646fea3449bcc1d964",
+                "reference": "6b53cec8b23f7561a6bbd8646fea3449bcc1d964",
                 "shasum": ""
             },
             "require": {
                 "fkooman/json": "~0.6.0",
                 "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "ext-xdebug": "*"
             },
             "suggest": {
                 "fkooman/rest-plugin-basic": "Basic Authentication plugin",
@@ -87,13 +90,15 @@
                 }
             ],
             "description": "Simple PHP library for writing REST services.",
-            "time": "2015-04-12 14:03:08"
+            "time": "2015-05-31 08:41:59"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "fkooman/rest": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
