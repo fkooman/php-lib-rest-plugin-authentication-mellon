@@ -18,11 +18,10 @@
 namespace fkooman\Rest\Plugin\Mellon;
 
 use fkooman\Http\Request;
-use fkooman\Rest\ServicePluginInterface;
+use fkooman\Rest\Plugin\Authentication\AuthenticationPluginInterface;
 use fkooman\Http\Exception\InternalServerErrorException;
-use fkooman\Rest\Plugin\UserInfo;
 
-class MellonAuthentication implements ServicePluginInterface
+class MellonAuthentication implements AuthenticationPluginInterface
 {
     /** @var string */
     private $userIdAttribute;
@@ -30,6 +29,21 @@ class MellonAuthentication implements ServicePluginInterface
     public function __construct($userIdAttribute = 'MELLON_NAME_ID')
     {
         $this->userIdAttribute = $userIdAttribute;
+    }
+
+    public function getScheme()
+    {
+        return 'Mellon';
+    }
+
+    public function getRealm()
+    {
+        return 'Mellon';
+    }
+
+    public function isAttempt(Request $request)
+    {
+        return true;
     }
 
     public function execute(Request $request, array $routeConfig)
@@ -44,6 +58,6 @@ class MellonAuthentication implements ServicePluginInterface
             );
         }
 
-        return new UserInfo($mellonUserId);
+        return new MellonUserInfo($mellonUserId);
     }
 }
