@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2014 François Kooman <fkooman@tuxed.net>.
+ * Copyright 2015 François Kooman <fkooman@tuxed.net>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,8 +18,9 @@
 require_once dirname(__DIR__).'/vendor/autoload.php';
 
 use fkooman\Rest\Service;
+use fkooman\Rest\PluginRegistry;
 use fkooman\Rest\Plugin\Mellon\MellonAuthentication;
-use fkooman\Rest\Plugin\UserInfo;
+use fkooman\Rest\Plugin\Mellon\MellonUserInfo;
 
 $service = new Service();
 $pluginRegistry = new PluginRegistry();
@@ -27,12 +28,11 @@ $pluginRegistry->registerDefaultPlugin(
     new MellonAuthentication('MELLON_NAME_ID')
 );
 $service->setPluginRegistry($pluginRegistry);
-
 $service->get(
     '/getMyUserId',
-    function (UserInfo $u) {
+    function (MellonUserInfo $u) {
         return sprintf('Hello %s', $u->getUserId());
     }
 );
 
-$service->run()->sendResponse();
+$service->run()->send();
