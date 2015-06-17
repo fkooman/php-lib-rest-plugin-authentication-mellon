@@ -19,16 +19,20 @@ namespace fkooman\Rest\Plugin\Mellon;
 
 use fkooman\Http\Request;
 use fkooman\Rest\Plugin\Authentication\AuthenticationPluginInterface;
-use fkooman\Http\Exception\InternalServerErrorException;
+use fkooman\Http\Exception\UnauthorizedException;
 
 class MellonAuthentication implements AuthenticationPluginInterface
 {
     /** @var string */
     private $userIdAttribute;
 
-    public function __construct($userIdAttribute = 'MELLON_NAME_ID')
+    /** @var array */
+    private $authParams;
+
+    public function __construct($userIdAttribute = 'MELLON_NAME_ID', array $authParams = array())
     {
         $this->userIdAttribute = $userIdAttribute;
+        $this->authParams = $authParams;
     }
 
     public function getScheme()
@@ -36,28 +40,38 @@ class MellonAuthentication implements AuthenticationPluginInterface
         return 'Mellon';
     }
 
-    public function getRealm()
+    public function getAuthParams()
     {
-        return 'Mellon';
+        return $this->authParams;
     }
 
     public function isAttempt(Request $request)
     {
-        return true;
+        return null !== $request->getHeader($this->userIdAttribute);
     }
 
     public function execute(Request $request, array $routeConfig)
     {
-        $mellonUserId = $request->getHeader($this->userIdAttribute);
-        if (null === $mellonUserId || !is_string($mellonUserId)) {
-            throw new InternalServerErrorException(
-                sprintf(
-                    'mellon configuration error, expected attribute "%s" not available',
-                    $this->userIdAttribute
-                )
+        if ($this->isAttempt($request)) {
+            return new MellonUserInfo(
+                $request->getHeader($this->userIdAttribute)
             );
         }
 
-        return new MellonUserInfo($mellonUserId);
+        // no attempt
+        if (array_key_exists('requireAuth', $routeConfig)) {
+            if (!$routeConfig['requireAuth']) {
+                // no authentication required
+                return;
+            }
+        }
+
+        // no attempt, but authentication required
+        throw new UnauthorizedException(
+            'no_credentials',
+            sprintf('the required header "%s" was not set', $this->userIdAttribute),
+            'Mellon',
+            $this->authParams
+        );
     }
 }
