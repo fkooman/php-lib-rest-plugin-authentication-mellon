@@ -25,7 +25,7 @@ below worked while developing `fkooman/rest`:
 If you want to just test `mod_auth_mellon` support you can also use the 
 following in your Apache configuration:
 
-    RequestHeader set MELLON_NAME_ID foo
+    RequestHeader set MELLON-NAME-ID foo
 
 # References
 - [https://github.com/UNINETT/mod_auth_mellon/wiki/GenericSetup](https://github.com/UNINETT/mod_auth_mellon/wiki/GenericSetup)
