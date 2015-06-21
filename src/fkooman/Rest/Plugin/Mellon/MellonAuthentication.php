@@ -68,11 +68,11 @@ class MellonAuthentication implements AuthenticationPluginInterface
         }
 
         // no attempt, but authentication required
-        throw new UnauthorizedException(
+        $e = new UnauthorizedException(
             'no_credentials',
-            sprintf('the required header "%s" was not set', $this->userIdAttribute),
-            'Mellon',
-            $this->authParams
+            sprintf('the required header "%s" was not set', $this->userIdAttribute)
         );
+        $e->addScheme('Mellon', $this->authParams);
+        throw $e;
     }
 }
