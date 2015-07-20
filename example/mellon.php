@@ -15,23 +15,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+require_once dirname(__DIR__).'/vendor/autoload.php';
 
-namespace fkooman\Rest\Plugin\Mellon;
+use fkooman\Rest\Service;
+use fkooman\Rest\Plugin\Authentication\Mellon\MellonAuthentication;
+use fkooman\Rest\Plugin\Authentication\Mellon\MellonUserInfo;
 
-use fkooman\Rest\Plugin\Authentication\UserInfoInterface;
-
-class MellonUserInfo implements UserInfoInterface
-{
-    /** @var string */
-    private $userId;
-
-    public function __construct($userId)
-    {
-        $this->userId = $userId;
+$service = new Service();
+$service->getPluginRegistry()->registerDefaultPlugin(
+    new MellonAuthentication('MELLON_NAME_ID')
+);
+$service->get(
+    '/getMyUserId',
+    function (MellonUserInfo $u) {
+        return sprintf('Hello %s', $u->getUserId());
     }
+);
 
-    public function getUserId()
-    {
-        return $this->userId;
-    }
-}
+$service->run()->send();

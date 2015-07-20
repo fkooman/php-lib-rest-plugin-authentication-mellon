@@ -16,10 +16,9 @@
  * limitations under the License.
  */
 
-namespace fkooman\Rest;
+namespace fkooman\Rest\Plugin\Authentication\Mellon;
 
 use fkooman\Http\Request;
-use fkooman\Rest\Plugin\Mellon\MellonAuthentication;
 use PHPUnit_Framework_TestCase;
 
 class MellonAuthenticationTest extends PHPUnit_Framework_TestCase

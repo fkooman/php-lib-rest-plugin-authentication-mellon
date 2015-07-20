@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2014 François Kooman <fkooman@tuxed.net>.
+ * Copyright 2015 François Kooman <fkooman@tuxed.net>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace fkooman\Rest\Plugin\Mellon;
+namespace fkooman\Rest\Plugin\Authentication\Mellon;
 
 use fkooman\Http\Request;
 use fkooman\Rest\Plugin\Authentication\AuthenticationPluginInterface;
@@ -60,8 +60,8 @@ class MellonAuthentication implements AuthenticationPluginInterface
         }
 
         // no attempt
-        if (array_key_exists('requireAuth', $routeConfig)) {
-            if (!$routeConfig['requireAuth']) {
+        if (array_key_exists('require', $routeConfig)) {
+            if (!$routeConfig['require']) {
                 // no authentication required
                 return;
             }

@@ -8,14 +8,15 @@
     ],
     "autoload": {
         "psr-0": {
-            "fkooman\\Rest\\Plugin\\Mellon\\": "src/"
+            "fkooman\\Rest\\Plugin\\Authentication\\Mellon\\": "src/"
         }
     },
     "description": "Mellon (SAML) Authentication plugin for fkooman/rest",
     "license": "Apache-2.0",
-    "name": "fkooman/rest-plugin-mellon",
+    "name": "fkooman/rest-plugin-authentication-mellon",
     "require": {
-        "fkooman/rest": "~0.9.0",
-        "php": ">=5.3.3"
+        "fkooman/rest": "^1.0.0",
+        "fkooman/rest-plugin-authentication": "^1.0.0",
+        "php": ">=5.4"
     }
 }
