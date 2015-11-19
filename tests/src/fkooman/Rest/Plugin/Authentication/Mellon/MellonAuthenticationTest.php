@@ -15,7 +15,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 namespace fkooman\Rest\Plugin\Authentication\Mellon;
 
 use fkooman\Http\Request;
@@ -36,14 +35,30 @@ class MellonAuthenticationTest extends PHPUnit_Framework_TestCase
                 'MELLON_NAME_ID' => 'foo',
             )
         );
-        $basicAuth = new MellonAuthentication('MELLON_NAME_ID');
-        $userInfo = $basicAuth->execute($request, array());
+        $auth = new MellonAuthentication('MELLON_NAME_ID');
+        $userInfo = $auth->isAuthenticated($request);
         $this->assertEquals('foo', $userInfo->getUserId());
     }
 
+    public function testMellonAuthHeaderNotSet()
+    {
+        $request = new Request(
+            array(
+                'SERVER_NAME' => 'www.example.org',
+                'SERVER_PORT' => 80,
+                'QUERY_STRING' => '',
+                'REQUEST_URI' => '/',
+                'SCRIPT_NAME' => '/index.php',
+                'REQUEST_METHOD' => 'GET',
+            )
+        );
+        $auth = new MellonAuthentication('MELLON_NAME_ID');
+        $this->assertFalse($auth->isAuthenticated($request));
+    }
+
     /**
-     * @expectedException fkooman\Http\Exception\UnauthorizedException
-     * @expectedExceptionMessage no_credentials
+     * @expectedException fkooman\Http\Exception\InternalServerErrorException
+     * @expectedExceptionMessage the required header "MELLON_NAME_ID" was not set
      */
     public function testMissingNameId()
     {
@@ -57,7 +72,7 @@ class MellonAuthenticationTest extends PHPUnit_Framework_TestCase
                 'REQUEST_METHOD' => 'GET',
             )
         );
-        $basicAuth = new MellonAuthentication('MELLON_NAME_ID');
-        $basicAuth->execute($request, array());
+        $auth = new MellonAuthentication('MELLON_NAME_ID');
+        $auth->requestAuthentication($request);
     }
 }

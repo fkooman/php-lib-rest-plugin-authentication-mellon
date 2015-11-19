@@ -1,5 +1,8 @@
 # Release History
 
+## 2.0.0 (...)
+- major API update for new `fkooman/rest-plugin-authentication`
+
 ## 1.0.0
 - update to new `fkooman/rest` and `fkooman/rest-plugin-authentication`
 
